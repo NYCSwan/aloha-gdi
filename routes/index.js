@@ -6,8 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/messages', function (req, res) {
-    res.send('Add a book')
-});
-
 module.exports = router;
