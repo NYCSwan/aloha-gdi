@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var url = require('url');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var messages = [];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,11 +29,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/messages', messages);
 // app.use('/users', users);
  app.get('/', function(req, res, next){
- 	res.send("it worked!!!!")
+ 	res.send(messages);
+ 	
  });
  app.all('/messages', function(req, res, next) {
  	res.send('messages')
- 	console.log("message: " + req.params)
+ 	var message = url.parse(req.url, true).query;
+ 	console.log(message)
+ 	console.log("message: " + message.message)
+ 	console.log("x: " + message.x)
+
+ 	messages.push({
+ 		message: message.message,
+ 		x: message.x,
+ 		y: message.y
+ 	})
  });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
