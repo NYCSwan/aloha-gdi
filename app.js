@@ -11,6 +11,8 @@ var users = require('./routes/users');
 
 var app = express();
 
+var fs = require('fs');
+
 var messages = [];
 
 // view engine setup
@@ -44,6 +46,29 @@ app.use(express.static(path.join(__dirname, 'public')));
  		x: message.x,
  		y: message.y
  	})
+
+ 	fs.exists('messages.json', function(exists){
+    if(exists){
+        console.log("yes file exists");
+        fs.readFile('messages.json', function readFileCallback(err, data){
+        if (err){
+            console.log(err);
+        } else {
+        var json = JSON.stringify(messages); 
+        fs.writeFile('messages.json', json); 
+        }});
+    } else {
+        console.log("file not exists")
+        var json = JSON.stringify(messages);
+        fs.writeFile('messages.json', json);
+        }
+    });
+
+
+
+
+
+
  });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
