@@ -35,15 +35,13 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.all('/messages', function(req, res, next) {
  	res.send('messages')
  	var message = url.parse(req.url, true).query;
- 	console.log(message)
- 	console.log("message: " + message.message)
- 	console.log("x: " + message.x)
 
  	messages.push({
  		message: message.message,
  		x: message.x,
  		y: message.y
  	})
+ 	res.render('Your message was sent!')
  });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
