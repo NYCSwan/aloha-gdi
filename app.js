@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.get('/', function(req, res, next){
  	res.send("it worked!!!!")
  });
- app.all('/messages2', function(req, res, next) {
+ app.all('/messages', function(req, res, next) {
  	res.send('messages')
  	console.log("message: " + req.params)
  });
