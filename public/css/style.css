@@ -1,0 +1,14 @@
+
+div.col-1-1 div.content {
+	height: 174px; 
+/*	width: 1366px; */
+	font-family: 'Poppins', sans-serif; 
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+
+
+div.first-name, div.last-name {
+	font-family: 'Poppins', sans-serif;
+}
